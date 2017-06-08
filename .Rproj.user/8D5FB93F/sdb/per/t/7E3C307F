@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "print(\"criando diretório local\")\n\nsetwd(\"C:\\\\local_R\")\n\nprint(\"instalação dos pacotes\")\n\n#pacote que inclui: data splitting, pre-processing, feature selection, model tuning using resampling, variable importance estimation\n#install.packages(\"caret\")\n#install.packages(\"caret\", dependencies = c(\"Depends\", \"Suggests\"))\n#pacote que inclui self-training e outros algoritmos de aprendizado semisupervisionado\n#install.packages(\"ssc\")\n#install.packages(\"DMwR\")\n#install.packages(\"caTools\")\n#install.packages(\"RWeka\")\n\nprint(\"carregar os pacotes\")\nlibrary(\"caret\") #parece n?o ser necess?rio\nlibrary(\"ssc\") #esse ? obrigat?rio\nlibrary(\"plyr\") #pacote q tem a fun??o join_all\nlibrary(\"RWeka\")\n\n#USANDO A FUN??O SELFTRAIN (USADA POR ALEXANDRE)\n\nlibrary(\"DMwR2\")\nlibrary(\"DMwR\")\nlibrary(\"datasets\")\n\n",
+    "created" : 1496924578902.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2570303807",
+    "id" : "7E3C307F",
+    "lastKnownWriteTime" : 1496925364,
+    "last_content_update" : 1496925364912,
+    "path" : "C:/local_R/projeto_karliane/configuracoes.R",
+    "project_path" : "configuracoes.R",
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

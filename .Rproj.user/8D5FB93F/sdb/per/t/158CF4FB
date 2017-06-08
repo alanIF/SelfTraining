@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "print(\"organizando os dados\")\n\nif (i==1) {\n  #base de dados IRIS\n  base_original <- getdata(\"iris\")\n  classe <- \"Species\"\n}else if (i==2){\n  #base de dados ECOLI\n  base_original <- read.arff(\"ecoli.arff\")\n  classe <- \"class\"\n}else if(i==3){\n  base_original <- read.arff(\"bupa.arff\");\n  classe <- \"selector\"\n  \n}else if(i==4){\n  base_original <- read.arff(\"glass.arff\")\n  classe <- \"Type\"\n  \n}else if(i==5){\n  base_original <- read.arff(\"haberman.arff\")\n  classe <-\"Survival_status\"\n}else if(i==6){\n  base_original <-read.arff(\"pima.arff\")\n  classe <- \"class\"\n  \n}else if(i==7){\n  base_original <-read.arff(\"cleveland.arff\")\n  classe <- \"num\"\n  \n}\n\n#tentando usar filtro do weka para transformar dados nominais em binarios\n#nombi <- make_Weka_filter(\"weka/filters/supervised/attribute/NominalToBinary\") # creates an R interface to the WEKA filter\n#datbin <- nombi(AT1 ~., data=base, control =Weka_control(N=TRUE, A=TRUE)) # Fehlermeldung\n#datbin\n\n\n#N?O EST? CERTO ASSIM, POIS ALGUNS EXEMPLOS N?O EST?O SENDO USADOS NO TREINAMENTO NUNCA E OUTROS EST?O APARECENDO MAIS DE UMA VEZ\nset.seed(100)\nif (i==1){\n  indice_treinamento <- createDataPartition(base_original$Species, p=0.75, list=FALSE)\n}else if (i==2){\n  indice_treinamento <- createDataPartition(base_original$class, p=0.75, list=FALSE)\n}else if (i==3){\n  indice_treinamento <- createDataPartition(base_original$selector, p=0.75, list=FALSE)\n}else if (i==4){\n  indice_treinamento <- createDataPartition(base_original$Type, p=0.75, list=FALSE)\n}else if (i==5){\n  indice_treinamento <- createDataPartition(base_original$Survival_status, p=0.75, list=FALSE)\n}else if (i==6){\n  indice_treinamento <- createDataPartition(base_original$class, p=0.75, list=FALSE)\n}else if (i==7){\n  indice_treinamento <- createDataPartition(base_original$num, p=0.75, list=FALSE)\n}\n\n\n\nbase <- base_original[indice_treinamento,]\nbase_teste <- base_original[-indice_treinamento,]\n#PRECISO RENUMERAR OS INDICES, TANTO DE TREINAMENTO QUANTO DE TESTE\n\n\nset.seed(214)# garante que o conjunto de dados escolhido para treinamento ser? sempre o mesmo - n?o sei se preciso dessa garantia\n\n#Quantidade de Exemplos\nexemplos = nrow(base)\n\n#taxa inicial de exemplos rotulados erm percentual\n#taxa = 10 a taxa é setada no script_main\ntaxa_inicial = exemplos*taxa/100\n\n\n\n\n#sorteio de ids para treinamento\nids_treino_rot <- sample(exemplos,taxa_inicial, replace=FALSE)\n\n\n#base de treinamento\nbase_treino_rot <- base[ids_treino_rot,]\nbase_treino_sem_rot <- base[-ids_treino_rot,]\n\n\nif (i==1) {\n  base_treino_sem_rot$Species <- NA #para base IRIS\n}else if (i==2){\n  base_treino_sem_rot$class <- NA #para base ECOLI\n}else if(i==3){\n  base_treino_sem_rot$selector <- NA # para base BUPA\n}else if(i==4){\n  base_treino_sem_rot$Type <- NA # para base glass\n}else if(i==5){\n  base_treino_sem_rot$Survival_status<- NA # para base haberman\n}else if (i==6){\n  base_treino_sem_rot$class <- NA #para base pima\n}else if (i==7) base_treino_sem_rot$num <- NA #para base cleveland\n\n#base de treinamento rotulada\nbase_treino_self_training_rot <- base_treino_rot\nbase_treino_self_training_sem_rot <- base_treino_sem_rot\ndfs <- list(base_treino_self_training_rot, base_treino_self_training_sem_rot)\nbase_treino_self_training <- join_all(dfs, type=\"full\")\n\n",
+    "created" : 1496924881842.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2039567081",
+    "id" : "158CF4FB",
+    "lastKnownWriteTime" : 1496944123,
+    "last_content_update" : 1496944123608,
+    "path" : "C:/local_R/projeto_karliane/organiza_dados.R",
+    "project_path" : "organiza_dados.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

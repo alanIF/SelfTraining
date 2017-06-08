@@ -206,9 +206,11 @@ for (i in 1:6){
             nr_added_exs_g<-c(nr_added_exs_g,length(new))
             ##resultado <-  c(it,",",i,",",thrConf,",",length(new))
             ##write(resultado, file = "result")
+            
           
         }
 
+        
         if (length(new)) {
           data[(1:N)[-sup][new],as.character(form[[2]])] <- as.character(probPreds[new,1])
   
@@ -221,7 +223,7 @@ for (i in 1:6){
         } else break
         if (it == maxIts || length(sup)/N >= percFull) break
       }
-
+  
 #matriz de confusao do selftraining
 #NÃO ESTÁ FUNCIONANDO PARA BASE DE DADOS 2, A MATRIZ NÃO APARECE COM A MESMA QUANTIDADE DE LINHAS E COLUNAS  
     if (i==1){

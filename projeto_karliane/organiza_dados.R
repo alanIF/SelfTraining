@@ -63,8 +63,7 @@ base_teste <- base_original[-indice_treinamento,]
 set.seed(214)# garante que o conjunto de dados escolhido para treinamento ser? sempre o mesmo - n?o sei se preciso dessa garantia
 
 #Quantidade de Exemplos
-exemplos = nrow(base)
-
+exemplos <-length(indice_treinamento)
 #taxa inicial de exemplos rotulados erm percentual
 #taxa = 10 a taxa é setada no script_main
 taxa_inicial = exemplos*taxa/100

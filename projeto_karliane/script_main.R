@@ -1,9 +1,7 @@
 #PROBLEMAS A RESOLVER
-#karliane - tentar pegar os resultados (acuracia) - ver base teste script alexandre
-#alan - aprender como colocar os resultados em uma matriz e depois em um arquivo
-#alan - incluir as demais bases nesse script
 #karliane e alan - aprender a usar outros classificadores que n?o seja arvore
 #dividir a base em treinamento e teste, o q eu fiz n?o t? certo.
+
 #1 - transformar os atributos n?o num?ricos em num?ricos - tentar filtro weka - alan achou paleativo, usaremos de acordo com a necessidade
 #2 - descobrir pq a confian?a da iris s? d? 1 - resolvido, n?o sei como...
 
@@ -30,7 +28,9 @@ getdata <- function(...)
   nr_added_exs_g<-c()
   tx_g <- c()
   acc_g <- c()
-  acc <- 0.0
+  bd <- c()
+  tx <- c()
+#  acc <- 0.0
     
   for (i in 1:6){
   
@@ -57,7 +57,10 @@ getdata <- function(...)
   }
 }
   #data frame que sera guardado no arquivo
-  data_arquivo <- data.frame(tx_g,it_g,bd_g,thrConf_g,nr_added_exs_g,acc_g)
+  data_arquivo <- data.frame(tx_g,it_g,bd_g,thrConf_g,nr_added_exs_g)
   #escrever no arquivo
   write.csv(data_arquivo, "resultado.csv", row.names = FALSE)
+  
+  data_arquivo_acc <- data.frame(tx, bd, acc_g)
+  write.csv(data_arquivo_acc, "resultado_acc.csv", row.names = FALSE)
   

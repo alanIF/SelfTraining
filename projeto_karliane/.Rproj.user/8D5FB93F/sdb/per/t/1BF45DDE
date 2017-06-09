@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "#PROBLEMAS A RESOLVER\n#karliane e alan - aprender a usar outros classificadores que n?o seja arvore\n#dividir a base em treinamento e teste, o q eu fiz n?o t? certo.\n\n#1 - transformar os atributos n?o num?ricos em num?ricos - tentar filtro weka - alan achou paleativo, usaremos de acordo com a necessidade\n#2 - descobrir pq a confian?a da iris s? d? 1 - resolvido, n?o sei como...\n\n#bases de dados\n#bupa, cleveland, ecoli, glass, haberman, iris, monk, pima, vehide, wisconsin\n#diret?rio local para salvar as bases e resultados\n\n#fazer a instalação/carregamento de pacotes e definir diretório local\nsource('C:/local_R/projeto_karliane/configuracoes.R')\n\nprint(\"Função para pegar a base de dados e colocar em uma variável base\")\ngetdata <- function(...)\n{\n  e <- new.env()\n  name <- data(..., envir = e)[1]\n  e[[name]]\n}\n\n\n  #variaveis para guardar e gravar no arquivo\n  it_g <-c() \n  bd_g <-c()\n  thrConf_g<-c()\n  nr_added_exs_g<-c()\n  tx_g <- c()\n  acc_g <- c()\n  bd <- c()\n  tx <- c()\n#  acc <- 0.0\n    \n  for (i in 1:6){\n  \n    for (j in 1:5){      \n      if (j == 1) taxa = 5\n      else if (j == 2) taxa = 10\n      else if (j == 3) taxa = 15\n      else if (j == 4) taxa = 20\n      else if (j == 5) taxa = 25\n      \n      source('C:/local_R/projeto_karliane/organiza_dados.R')\n      print(\"iniciando o treinamento\")\n      \n      #fun??o que ser? passada como par?metro predFunc da fun??o selftrain\n      f <- function(m,d) {\n        l <- predict(m,d,type='class')\n        c <- apply(predict(m,d),1,max)\n        data.frame(cl=l,p=c)\n      }\n      \n      source('C:/local_R/projeto_karliane/treinamento.R')\n      \n    \n  }\n}\n  #data frame que sera guardado no arquivo\n  data_arquivo <- data.frame(tx_g,it_g,bd_g,thrConf_g,nr_added_exs_g)\n  #escrever no arquivo\n  write.csv(data_arquivo, \"resultado.csv\", row.names = FALSE)\n  \n  data_arquivo_acc <- data.frame(tx, bd, acc_g)\n  write.csv(data_arquivo_acc, \"resultado_acc.csv\", row.names = FALSE)\n  \n",
+    "created" : 1496924294491.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3501050545",
+    "id" : "1BF45DDE",
+    "lastKnownWriteTime" : 1497010488,
+    "last_content_update" : 1497010488726,
+    "path" : "C:/local_R/projeto_karliane/script_main.R",
+    "project_path" : "script_main.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
